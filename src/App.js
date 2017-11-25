@@ -1,7 +1,7 @@
 import './styles/App.css'
+import 'font-awesome/css/font-awesome.min.css'
 
 import React from 'react'
-import logo  from './logo.svg'
 
 import { HashRouter as Router, Route, Redirect } from 'react-router-dom'
 
@@ -16,7 +16,9 @@ export default class App extends React.Component {
             return (
               <div>
                 <header className="app-header">
-                  <img src={logo} className="app-logo" alt="logo" />
+                  <div>
+                    <i className="fa fa-cloud fa-5x app-logo" aria-hidden="true"></i>
+                  </div>
                   <h1 className="app-title">Cloud Mind</h1>
                 </header>
 
