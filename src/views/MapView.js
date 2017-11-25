@@ -1,7 +1,8 @@
 
 import React  from 'react'
 import MAPJS  from 'mindmup-mapjs'
-import jQuery from 'jquery'
+// import jQuery from 'jquery'
+import jQuery from 'mindmup-mapjs/node_modules/jquery'
 
 import themeProvider from './Theme'
 import testMap       from '../data/sample-map.json'
@@ -14,10 +15,11 @@ const content        = Model.content
 export default class MapView extends React.Component {
   componentDidMount() {
     const container = jQuery('#container')
+    //const imageInsertController = new MAPJS.ImageInsertController('http://localhost:4999?u=')
     const idea      = content(testMap)
     const mapModel  = new MAPJS.MapModel(MAPJS.DOMRender.layoutCalculator, [])
 
-    jQuery.fn.attachmentEditorWidget = mapModel => {
+    jQuery.fn.attachmentEditorWidget = function (mapModel) {
       return this.each(function () {
         mapModel.addEventListener('attachmentOpened', function (nodeId, attachment) {
           mapModel.setAttachment('attachmentEditorWidget', nodeId, {
@@ -30,11 +32,11 @@ export default class MapView extends React.Component {
     }
     window.onerror = window.alert
 
-    // jQuery('#themecss').themeCssWidget(themeProvider, new ThemeProcessor(), mapModel)
-    // container.domMapWidget(console, mapModel, false, imageInsertController)
-    // jQuery('body').mapToolbarWidget(mapModel)
-    // jQuery('body').attachmentEditorWidget(mapModel)
-    // mapModel.setIdea(idea)
+    jQuery('#themecss').themeCssWidget(themeProvider, new ThemeProcessor(), mapModel)
+    container.domMapWidget(console, mapModel, false/*, imageInsertController*/)
+    jQuery('body').mapToolbarWidget(mapModel)
+    jQuery('body').attachmentEditorWidget(mapModel)
+    mapModel.setIdea(idea)
 
   }
 
@@ -42,6 +44,11 @@ export default class MapView extends React.Component {
     return (
       <div>
         <h2>Me is map view</h2>
+
+        <div id="container"></div>
+        <style id="themecss">
+        </style>
+
       </div>
     )
   }
