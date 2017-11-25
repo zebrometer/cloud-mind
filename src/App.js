@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './styles/App.css';
+import './styles/App.css'
 
-class App extends Component {
+import React from 'react'
+import logo  from './logo.svg'
+
+export default class App extends React.Component {
   render() {
     return (
       <div className="App">
@@ -17,5 +18,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;
